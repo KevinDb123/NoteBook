@@ -16,7 +16,7 @@ class User(db.Model):
     password = db.Column(db.String(80), nullable=False)
     def __repr__(self):
         return f'<User {self.username}>'
-
+# login.html登录界面
 @app.route("/login",methods=['GET'])
 def login():
     return render_template("login.html")
@@ -28,9 +28,10 @@ def login_check():
             if user.password == request.form['password']:
                 return redirect(url_for('notebook'))
             else:
-                return "密码错误！"
+                return redirect(url_for('login', message="密码错误!"))
     else:
-        return "登录失败！"
+        return redirect(url_for('login', message="该用户未注册!"))
+# register.html 注册界面
 @app.route("/register",methods=['GET'])
 def register():
     return render_template("register.html")
@@ -40,13 +41,13 @@ def register_check():
     password = request.form.get('password')
     existing_user = User.query.filter_by(username=username).first()
     if existing_user:
-        return "该用户名已被注册！"
+        return redirect(url_for('register', message="该用户名已被注册!"))
     new_user = User(username=username, password=password)
     db.session.add(new_user)
     db.session.commit()
 
-    return jsonify({"message": f"User {username} added."}), 201
-
+    return redirect(url_for('register', message="注册成功！"))
+#notebook.html 主页
 @app.route("/notebook")
 def notebook():
     return render_template("notebook.html")
