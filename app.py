@@ -1,5 +1,7 @@
 from flask import Flask, render_template, request, redirect, url_for,jsonify
 from flask_sqlalchemy import SQLAlchemy
+from pyexpat.errors import messages
+
 app = Flask(__name__)
 HOSTNAME = "localhost"
 PORT = '3306'
@@ -17,10 +19,10 @@ class User(db.Model):
     def __repr__(self):
         return f'<User {self.username}>'
 # login.html登录界面
-@app.route("/login",methods=['GET'])
+@app.route("/Notebook/login",methods=['GET'])
 def login():
     return render_template("login.html")
-@app.route("/login",methods=['POST'])
+@app.route("/Notebook/login",methods=['POST'])
 def login_check():
     users=User.query.all()
     for user in users:
@@ -32,10 +34,10 @@ def login_check():
     else:
         return redirect(url_for('login', message="该用户未注册!"))
 # register.html 注册界面
-@app.route("/register",methods=['GET'])
+@app.route("/Notebook/register",methods=['GET'])
 def register():
     return render_template("register.html")
-@app.route("/register",methods=['POST'])
+@app.route("/Notebook/register",methods=['POST'])
 def register_check():
     username = request.form.get('username')
     password = request.form.get('password')
@@ -47,8 +49,29 @@ def register_check():
     db.session.commit()
 
     return redirect(url_for('register', message="注册成功！"))
+#reset_password.html 修改密码
+@app.route("/Notebook/repwd",methods=['GET'])
+def repwd():
+    return render_template("reset_password.html")
+@app.route("/Notebook/repwd",methods=['POST'])
+def reset_password():
+    username = request.form.get('username')
+    password = request.form.get('password')
+    new_password=request.form.get('new_password')
+    user1 = User.query.filter_by(username=username).first()
+    if user1:
+        if user1.password == password:
+            if new_password !=password:
+                user1.password = new_password
+                db.session.commit()
+                return redirect(url_for('repwd',message="修改密码成功！"))
+            else:
+                return redirect(url_for("repwd",message="新密码不能与原密码相同"))
+        else:
+            return redirect(url_for("repwd",message="密码错误！"))
+    return redirect(url_for("repwd",message="该用户并未注册"))
 #notebook.html 主页
-@app.route("/notebook")
+@app.route("/Notebook/notebook")
 def notebook():
     return render_template("notebook.html")
 if(__name__ == "__main__"):
