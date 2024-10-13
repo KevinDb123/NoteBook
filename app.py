@@ -1,6 +1,5 @@
 from flask import Flask, render_template, request, redirect, url_for,jsonify
 from flask_sqlalchemy import SQLAlchemy
-from pyexpat.errors import messages
 
 app = Flask(__name__)
 HOSTNAME = "localhost"
@@ -74,7 +73,7 @@ def reset_password():
 @app.route("/Notebook/notebook")
 def notebook():
     return render_template("notebook.html")
-if(__name__ == "__main__"):
+if __name__ == "__main__":
     with app.app_context():
         db.create_all()
     app.run(debug=True)

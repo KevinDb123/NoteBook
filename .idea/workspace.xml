@@ -4,12 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5a7c0935-9925-42f2-80b8-40a50a69ce3f" name="更改" comment="修改login和register的信息显示">
-      <change afterPath="$PROJECT_DIR$/templates/reset_password.html" afterDir="false" />
+    <list default="true" id="5a7c0935-9925-42f2-80b8-40a50a69ce3f" name="更改" comment="添加修改密码的界面">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/login.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/register.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/register.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -124,7 +121,7 @@
       <workItem from="1728750441781" duration="67000" />
       <workItem from="1728781942305" duration="14072000" />
       <workItem from="1728797627281" duration="157000" />
-      <workItem from="1728797928439" duration="6253000" />
+      <workItem from="1728797928439" duration="6511000" />
     </task>
     <task id="LOCAL-00001" summary="Add basic things">
       <option name="closed" value="true" />
@@ -214,7 +211,15 @@
       <option name="project" value="LOCAL" />
       <updated>1728804599816</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="添加修改密码的界面">
+      <option name="closed" value="true" />
+      <created>1728806241527</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1728806241527</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -240,7 +245,8 @@
     <MESSAGE value="添加register.html,login.html,notebook.html,进行了一些修改" />
     <MESSAGE value="修改" />
     <MESSAGE value="修改login和register的信息显示" />
-    <option name="LAST_COMMIT_MESSAGE" value="修改login和register的信息显示" />
+    <MESSAGE value="添加修改密码的界面" />
+    <option name="LAST_COMMIT_MESSAGE" value="添加修改密码的界面" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/NoteBook$main.coverage" NAME="app 覆盖结果" MODIFIED="1728797444195" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
