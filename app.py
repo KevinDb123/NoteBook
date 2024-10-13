@@ -20,12 +20,6 @@ class User(db.Model):
 @app.route("/login",methods=['GET'])
 def login():
     return render_template("login.html")
-@app.route("/register",methods=['GET'])
-def register():
-    return render_template("register.html")
-@app.route("/notebook")
-def notebook():
-    return render_template("notebook.html")
 @app.route("/login",methods=['POST'])
 def login_check():
     users=User.query.all()
@@ -37,9 +31,11 @@ def login_check():
                 return "密码错误！"
     else:
         return "登录失败！"
+@app.route("/register",methods=['GET'])
+def register():
+    return render_template("register.html")
 @app.route("/register",methods=['POST'])
 def register_check():
-    print("111")
     username = request.form.get('username')
     password = request.form.get('password')
     existing_user = User.query.filter_by(username=username).first()
@@ -51,6 +47,10 @@ def register_check():
 
     return jsonify({"message": f"User {username} added."}), 201
 
-
+@app.route("/notebook")
+def notebook():
+    return render_template("notebook.html")
 if(__name__ == "__main__"):
+    with app.app_context():
+        db.create_all()
     app.run(debug=True)
