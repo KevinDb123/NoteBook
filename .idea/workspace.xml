@@ -4,18 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5a7c0935-9925-42f2-80b8-40a50a69ce3f" name="更改" comment="remove somethings">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/templates/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations models.py" beforeDir="false" afterPath="$PROJECT_DIR$/templates/register.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/settings.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/urls.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/views.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/wsgi.py" beforeDir="false" />
+    <list default="true" id="5a7c0935-9925-42f2-80b8-40a50a69ce3f" name="更改" comment="重新整理了一下">
+      <change beforePath="$PROJECT_DIR$/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/index.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -113,7 +103,7 @@
       <updated>1728747942674</updated>
       <workItem from="1728747952554" duration="2446000" />
       <workItem from="1728750441781" duration="67000" />
-      <workItem from="1728781942305" duration="4321000" />
+      <workItem from="1728781942305" duration="5003000" />
     </task>
     <task id="LOCAL-00001" summary="Add basic things">
       <option name="closed" value="true" />
@@ -163,7 +153,15 @@
       <option name="project" value="LOCAL" />
       <updated>1728782915740</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="重新整理了一下">
+      <option name="closed" value="true" />
+      <created>1728786882537</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1728786882537</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -185,7 +183,8 @@
     <MESSAGE value="modify main.py" />
     <MESSAGE value="add some files" />
     <MESSAGE value="remove somethings" />
-    <option name="LAST_COMMIT_MESSAGE" value="remove somethings" />
+    <MESSAGE value="重新整理了一下" />
+    <option name="LAST_COMMIT_MESSAGE" value="重新整理了一下" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/NoteBook$main.coverage" NAME="main 覆盖结果" MODIFIED="1728786784697" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
