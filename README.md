@@ -3,4 +3,4 @@
 - Using Flask,MySQL,and html
 - by KevinDb123
 - NoteBook!
-- completed:login,register,repwd(update password)
+- completed:login,register,repwd(update password),deleteUser,UserLists
