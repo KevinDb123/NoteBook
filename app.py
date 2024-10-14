@@ -1,4 +1,5 @@
 from django.contrib.messages.context_processors import messages
+from django.shortcuts import render
 from flask import Flask, render_template, request, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
 
@@ -12,7 +13,9 @@ app.config['SQLALCHEMY_DATABASE_URI'] = f'mysql+pymysql://{USERNAME}:{PASSWORD}@
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db=SQLAlchemy(app)
-isAdministrator=False
+isAdministrator=False #是否为管理员
+isLogin=False #是否登录
+login_user=0
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(80), unique=True, nullable=False)
@@ -21,6 +24,14 @@ class User(db.Model):
         return f'<User {self.username}>'
     def to_dict(self):
         return {'id': self.id, 'username': self.username, 'password': self.password}
+#homepage.html
+@app.route("/Notebook/homepage",methods=['GET'])
+def homepage():
+    print(isLogin)
+    if isLogin:
+        return render_template("homepage-login.html",user=login_user)
+    else:
+        return render_template("homepage.html")
 # login.html登录界面
 @app.route("/Notebook/login",methods=['GET'])
 def login():
@@ -34,6 +45,9 @@ def login_check():
                 if user.username=='KevinDb123':
                     global isAdministrator
                     isAdministrator=True
+                global isLogin,login_user
+                isLogin=True
+                login_user=user.username
                 return redirect(url_for('notebook'))
             else:
                 return redirect(url_for('login', message="密码错误!"))
@@ -79,6 +93,8 @@ def reset_password():
 #deleteUser.html 注销用户
 @app.route("/Notebook/deleteUser",methods=['GET'])
 def deleteUser():
+    global isLogin
+    isLogin=False
     return render_template("deleteUser.html")
 @app.route("/Notebook/deleteUser",methods=['POST'])
 def delete_user():
@@ -98,6 +114,14 @@ def delete_user():
             return redirect(url_for("deleteUser",message="密码错误（密码或确认密码）！"))
     else:
         return redirect(url_for("deleteUser",message="未查询到该用户"))
+#退出登录
+@app.route("/Notebook/logout",methods=['GET'])
+def logout():
+    global isLogin,isAdministrator,login_user
+    isLogin=False
+    isAdministrator=False
+    login_user=0
+    return redirect(url_for('homepage'))
 #管理员查看用户信息
 @app.route("/Notebook/UserLists",methods=['GET'])
 def UserLists():

@@ -4,9 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5a7c0935-9925-42f2-80b8-40a50a69ce3f" name="更改" comment="添加deleteUser.html">
-      <change afterPath="$PROJECT_DIR$/static/css/userLists.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/UserLists.html" afterDir="false" />
+    <list default="true" id="5a7c0935-9925-42f2-80b8-40a50a69ce3f" name="更改" comment="添加了查询Userlists的功能并设置只有管理员（我）能够查询">
+      <change afterPath="$PROJECT_DIR$/static/images/background-image.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/homepage-login.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/homepage.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
     </list>
@@ -53,12 +54,14 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "JavaScript 调试.UserLists.html.executor": "Run",
+    "JavaScript 调试.homepage.html.executor": "Run",
     "JavaScript 调试.notebook.html.executor": "Run",
     "JavaScript 调试.register.html.executor": "Run",
     "Python.app.executor": "Run",
     "Python.main.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "master",
+    "last_opened_file_path": "E:/pythonProject1-Web-for-notebook/NoteBook/static/images",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -67,8 +70,16 @@
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\pythonProject1-Web-for-notebook\NoteBook\static\images" />
+    </key>
+  </component>
   <component name="RunManager" selected="Python.app">
     <configuration name="UserLists.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/NoteBook/templates/UserLists.html" useBuiltInWebServerPort="true">
+      <method v="2" />
+    </configuration>
+    <configuration name="homepage.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/NoteBook/templates/homepage.html" useBuiltInWebServerPort="true">
       <method v="2" />
     </configuration>
     <configuration name="notebook.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/NoteBook/templates/notebook.html" useBuiltInWebServerPort="true">
@@ -102,6 +113,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JavaScript 调试.homepage.html" />
         <item itemvalue="JavaScript 调试.UserLists.html" />
         <item itemvalue="JavaScript 调试.notebook.html" />
         <item itemvalue="JavaScript 调试.register.html" />
@@ -130,7 +142,8 @@
       <workItem from="1728797627281" duration="157000" />
       <workItem from="1728797928439" duration="6577000" />
       <workItem from="1728831752930" duration="7000" />
-      <workItem from="1728866994798" duration="2667000" />
+      <workItem from="1728866994798" duration="2887000" />
+      <workItem from="1728878923184" duration="1878000" />
     </task>
     <task id="LOCAL-00001" summary="Add basic things">
       <option name="closed" value="true" />
@@ -244,7 +257,15 @@
       <option name="project" value="LOCAL" />
       <updated>1728867652710</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="添加了查询Userlists的功能并设置只有管理员（我）能够查询">
+      <option name="closed" value="true" />
+      <created>1728869787985</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1728869787985</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -273,10 +294,11 @@
     <MESSAGE value="添加修改密码的界面" />
     <MESSAGE value="小改动" />
     <MESSAGE value="添加deleteUser.html" />
-    <option name="LAST_COMMIT_MESSAGE" value="添加deleteUser.html" />
+    <MESSAGE value="添加了查询Userlists的功能并设置只有管理员（我）能够查询" />
+    <option name="LAST_COMMIT_MESSAGE" value="添加了查询Userlists的功能并设置只有管理员（我）能够查询" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/NoteBook$main.coverage" NAME="app 覆盖结果" MODIFIED="1728797444195" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/NoteBook$app.coverage" NAME="app 覆盖结果" MODIFIED="1728869383917" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/NoteBook$app.coverage" NAME="app 覆盖结果" MODIFIED="1728880425303" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>
