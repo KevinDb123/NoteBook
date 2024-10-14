@@ -1,6 +1,6 @@
+from django.contrib.messages.context_processors import messages
 from flask import Flask, render_template, request, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
-from pyexpat.errors import messages
 
 app = Flask(__name__)
 HOSTNAME = "localhost"
@@ -12,12 +12,15 @@ app.config['SQLALCHEMY_DATABASE_URI'] = f'mysql+pymysql://{USERNAME}:{PASSWORD}@
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db=SQLAlchemy(app)
+isAdministrator=False
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(80), unique=True, nullable=False)
     password = db.Column(db.String(80), nullable=False)
     def __repr__(self):
         return f'<User {self.username}>'
+    def to_dict(self):
+        return {'id': self.id, 'username': self.username, 'password': self.password}
 # login.html登录界面
 @app.route("/Notebook/login",methods=['GET'])
 def login():
@@ -28,6 +31,9 @@ def login_check():
     for user in users:
         if user.username == request.form['username']:
             if user.password == request.form['password']:
+                if user.username=='KevinDb123':
+                    global isAdministrator
+                    isAdministrator=True
                 return redirect(url_for('notebook'))
             else:
                 return redirect(url_for('login', message="密码错误!"))
@@ -87,11 +93,20 @@ def delete_user():
                 db.session.commit()
                 return redirect(url_for("deleteUser",message="已成功注销！"))
             else:
-                return redirect(url_for("deleteUser",message="两次密码不同！"))
+                return redirect(url_for("deleteUser",message="密码错误（密码或确认密码）！"))
         else:
-            return redirect(url_for("deleteUser",message="密码错误！"))
+            return redirect(url_for("deleteUser",message="密码错误（密码或确认密码）！"))
     else:
         return redirect(url_for("deleteUser",message="未查询到该用户"))
+#管理员查看用户信息
+@app.route("/Notebook/UserLists",methods=['GET'])
+def UserLists():
+    if not isAdministrator:
+        print(isAdministrator)
+        return '<script>alert("只有管理员才能查看")</script>'
+    users=User.query.all()
+    user_lists=[user.to_dict() for user in users]
+    return render_template("UserLists.html",users=user_lists)
 #notebook.html 主页
 @app.route("/Notebook/notebook")
 def notebook():

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>用户信息展示</title>
+    <link rel="stylesheet" href="../static/css/userLists.css">
+</head>
+<body>
+    <div class="container">
+        <h1>所有用户信息</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>用户id</th>
+                    <th>用户名</th>
+                    <th>密码</th>
+                    <th>笔记个数</th>
+                    <th>所有笔记</th>
+                </tr>
+            </thead>
+            <tbody>
+            {%for user in users%}
+                <tr>
+                    <td>用户{{user.id}}</td>
+                    <td>{{user.username}}</td>
+                    <td>{{user.password}}</td>
+                    <td>0</td>
+                    <td>
+                        <a href="/Notebook/UserLists">查看所有笔记</a>
+                    </td>
+                </tr>
+            {%endfor%}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
