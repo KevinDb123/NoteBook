@@ -1,5 +1,6 @@
-from flask import Flask, render_template, request, redirect, url_for,jsonify
+from flask import Flask, render_template, request, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
+from pyexpat.errors import messages
 
 app = Flask(__name__)
 HOSTNAME = "localhost"
@@ -69,6 +70,28 @@ def reset_password():
         else:
             return redirect(url_for("repwd",message="密码错误！"))
     return redirect(url_for("repwd",message="该用户并未注册"))
+#deleteUser.html 注销用户
+@app.route("/Notebook/deleteUser",methods=['GET'])
+def deleteUser():
+    return render_template("deleteUser.html")
+@app.route("/Notebook/deleteUser",methods=['POST'])
+def delete_user():
+    username = request.form.get('username')
+    password=request.form.get('password')
+    repassword=request.form.get('repassword')
+    user1=User.query.filter_by(username=username).first()
+    if user1:
+        if user1.password == password:
+            if user1.password == repassword:
+                db.session.delete(user1)
+                db.session.commit()
+                return redirect(url_for("deleteUser",message="已成功注销！"))
+            else:
+                return redirect(url_for("deleteUser",message="两次密码不同！"))
+        else:
+            return redirect(url_for("deleteUser",message="密码错误！"))
+    else:
+        return redirect(url_for("deleteUser",message="未查询到该用户"))
 #notebook.html 主页
 @app.route("/Notebook/notebook")
 def notebook():
