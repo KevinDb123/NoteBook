@@ -18,12 +18,13 @@
                     <th>笔记个数</th>
                     <th>所有笔记</th>
                     <th>修改密码</th>
+                    <th>删除该用户</th>
                 </tr>
             </thead>
             <tbody>
             {%for user in users%}
                 <tr>
-                    <td>用户{{user.id}}</td>
+                    <td>{{ "%04d"|format(user.id) }}</td>
                     <td>{{user.username}}</td>
                     <td>{{user.password}}</td>
                     <td>0</td>
@@ -32,6 +33,9 @@
                     </td>
                     <td>
                         <a href="{{ url_for('admin.Admin_repwd', username=user.username) }}">修改密码</a>
+                    </td>
+                    <td>
+                        <a href="{{ url_for('admin.Admin_deleteUser', username=user.username) }}">删除该用户</a>
                     </td>
                 </tr>
             {%endfor%}
