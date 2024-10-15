@@ -17,6 +17,7 @@
                     <th>密码</th>
                     <th>笔记个数</th>
                     <th>所有笔记</th>
+                    <th>修改密码</th>
                 </tr>
             </thead>
             <tbody>
@@ -28,6 +29,9 @@
                     <td>0</td>
                     <td>
                         <a href="/Notebook/UserLists">查看所有笔记</a>
+                    </td>
+                    <td>
+                        <a href="{{ url_for('admin.Admin_repwd', username=user.username) }}">修改密码</a>
                     </td>
                 </tr>
             {%endfor%}

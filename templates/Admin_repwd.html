@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>修改用户密码</title>
+    <link rel="stylesheet" href="../static/css/prior.css">
+</head>
+<body>
+    <div class="container">
+        <h1>修改密码</h1>
+        <div class="form-box">
+            <h2>用户名: {{username}}</h2>
+            <form action="/Notebook/Admin_repwd/{{username}}" method="POST">
+                <input type="hidden" name="userId" value="用户ID示例">
+                <input type="password" name="newPassword" placeholder="请输入新密码" required>
+                <button type="submit">更新密码</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
