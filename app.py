@@ -1,4 +1,4 @@
-from flask import Flask,g
+from flask import Flask,g,session
 from flask_sqlalchemy import SQLAlchemy
 from config import Config
 import webbrowser
@@ -11,7 +11,7 @@ from routes.notebook import notebook_bp
 # 创建 Flask 应用实例
 app = Flask(__name__)
 app.config.from_object(Config)
-
+app.secret_key="123456"
 # 初始化数据库
 db.init_app(app)
 
@@ -22,9 +22,9 @@ app.register_blueprint(admin_bp, url_prefix='/Notebook')
 app.register_blueprint(notebook_bp, url_prefix='/Notebook')
 @app.before_request
 def before_request():
-    g.isAdministrator = False
-    g.isLogin = False
-    g.login_user = None
+    g.isAdministrator=session.get('isAdministrator',False)
+    g.isLogin=session.get('isLogin',False)
+    g.login_user=session.get('login_user',None)
 if __name__ == "__main__":
     with app.app_context():
         db.create_all()
