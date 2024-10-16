@@ -5,7 +5,9 @@ from flask import Blueprint,Flask, render_template, request, redirect, url_for,g
 users_bp=Blueprint('users',__name__,template_folder='../templates')
 @users_bp.route("/login", methods=['GET'])
 def login():
-    return render_template("login.html")
+    if not g.isLogin:
+        return render_template("login.html")
+    return "<script>alert('您已经登录过了！')</script>"
 
 
 @users_bp.route("/login", methods=['POST'])
@@ -18,7 +20,7 @@ def login_check():
                     session['isAdministrator'] = True
                 session['isLogin'] = True
                 session['login_user'] = user.username
-                return redirect(url_for('notebook.notebook'))
+                return redirect(url_for('notebook.upload_note'))
             else:
                 return redirect(url_for('users.login', message="密码错误!"))
     return redirect(url_for('users.login', message="该用户未注册!"))

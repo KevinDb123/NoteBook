@@ -29,13 +29,13 @@
                     <td>{{user.password}}</td>
                     <td>{{user.note_numbers}}</td>
                     <td>
-                        <a href="/Notebook/UserLists">查看所有笔记</a>
+                        <a href="{{url_for('notebook.allNotes',username=user.username)}}" target="_blank">查看所有笔记</a>
                     </td>
                     <td>
-                        <a href="{{ url_for('admin.Admin_repwd', username=user.username) }}">修改密码</a>
+                        <a href="{{ url_for('admin.Admin_repwd', username=user.username) }}" target="_blank">修改密码</a>
                     </td>
                     <td>
-                        <a href="{{ url_for('admin.Admin_deleteUser', username=user.username) }}">删除该用户</a>
+                        <a href="{{ url_for('admin.Admin_deleteUser', username=user.username) }}" target="_blank">删除该用户</a>
                     </td>
                 </tr>
             {%endfor%}

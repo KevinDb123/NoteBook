@@ -1,20 +1,45 @@
 <!DOCTYPE html>
-<html lang="zh">
+<html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>创建笔记</title>
-    <link rel="stylesheet" href="{{url_for('static',filename='css/upload.css')}}">
+    <title>{{username}}的在线笔记</title>
+    <link rel="stylesheet" href="../static/css/notebook.css">
 </head>
 <body>
-    <div class="note-container">
-        <form action="/Notebook/upload_note" method="POST">
-            <input type="text" id="note-title" value="{{username}}的笔记" name="note_title" />
-            <div class="note-content">
-                <textarea name="note_content" id="note-text" placeholder="在这里输入笔记内容..."></textarea>
+    <nav class="navbar">
+        <h1>{{username}}的在线笔记</h1>
+        <ul>
+            <li><a href="{{url_for('users.repwd')}}" target="_blank">修改密码</a></li>
+            <li><a href="{{url_for('users.deleteUser')}}">注销账户</a></li>
+            <li><a href="{{url_for('users.register')}}" target="_blank">注册用户</a></li>
+            <li><a href="{{url_for('notebook.homepage')}}" target="_blank">回到首页</a></li>
+            <li><a href="/Notebook/logout">登出</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <!-- 侧边栏 -->
+        <aside class="sidebar">
+            <button class="create-btn" onclick="window.open('{{ url_for('notebook.upload_note') }}', '_blank')">新建笔记</button>
+            <ul>
+                <li><a href="{{url_for('notebook.allNotes',username=username)}}" target="_blank">所有笔记</a></li>
+                <li><a href="#">个人分类</a></li>
+            </ul>
+        </aside>
+
+        <!-- 主内容区域 -->
+        <main class="content">
+            <div class="note-editor">
+                <form action="/Notebook/upload_note" method="POST">
+                   <h2>标题：</h2> <input type="text" id="note-title" value="{{username}}的笔记{{num}}" name="note_title" />
+                    <div class="note-content">
+                        <textarea name="note_content" id="note-text" placeholder="在这里输入笔记内容..."></textarea>
+                    </div>
+                    <button class="create-btn" type="submit">点击提交</button>
+                </form>
             </div>
-            <button type="submit">点击提交</button>
-        </form>
+        </main>
     </div>
 </body>
 </html>

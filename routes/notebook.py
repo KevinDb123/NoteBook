@@ -35,21 +35,18 @@ def render_markdown(content):
 @notebook_bp.route("/homepage", methods=['GET'])
 def homepage():
     if g.isLogin:
+        if g.isAdministrator:
+            return render_template("homepage-admin.html", user=g.login_user)
         return render_template("homepage-login.html", user=g.login_user)
     return render_template("homepage.html")
-
-@notebook_bp.route("/notebook")
-def notebook():
-    if g.isLogin:
-        return render_template("notebook.html", user=g.login_user)
-    return redirect(url_for('users.login'))
 
 @notebook_bp.route("/upload_note", methods=['GET'])
 def upload_note():
     if g.isLogin:
         user1=User.query.filter_by(username=g.login_user).first()
         if user1:
-            return render_template("upload_note.html",username=user1.username)
+            return render_template("upload_note.html",username=user1.username,num=user1.note_numbers+1)
+    return redirect(url_for('users.login'))
 
 @notebook_bp.route("/upload_note", methods=['POST'])
 def upload_note_post():
@@ -70,7 +67,7 @@ def upload_note_post():
         db.session.commit()
         user1.note_numbers=user1.note_numbers+1
         db.session.commit()
-        return redirect(url_for('notebook.notebook'))
+        return redirect(url_for('notebook.upload_note'))
 
 
 @notebook_bp.route("/view_note/<int:note_id>")
