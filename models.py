@@ -10,7 +10,7 @@ class User(db.Model):
     def __repr__(self):
         return f'<User {self.username}>'
     def to_dict(self):
-        return {'id': self.id, 'username': self.username, 'password': self.password}
+        return {'id': self.id, 'username': self.username, 'password': self.password,'note_numbers': self.note_numbers, 'administrator': self.administrator}
 
 class Notes(db.Model):
     note_id = db.Column(db.Integer, primary_key=True)

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{username}}的所有笔记列表</title>
+    <link rel="stylesheet" href="{{url_for('static',filename='css/userLists.css')}}">
+</head>
+<body>
+    <div class="container">
+        <h1>{{username}}的所有笔记</h1>
+        <table>
+            <p><b>共有{{notes|length}}条笔记</b></p>
+            <thead>
+                <tr>
+                    <th>笔记</th>
+                    <th>笔记ID</th>
+                    <th>标题</th>
+                    <th>最新更新时间</th>
+                    <th>内容预览</th>
+                    <th>查看笔记内容</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% if notes|length == 0 %}
+            <tr>
+                <td colspan="5"><p>目前还没有笔记。</p></td>
+            </tr>
+            {% else %}
+            {% for note in notes %}
+                <tr>
+                    <td>{{loop.index}}</td>
+                    <td>{{ "%04d"|format(note.note_id) }}</td>
+                    <td>{{note.title}}</td>
+                    <td>{{note.update_time}}</td>
+                    <td>{{ note.content[:30] | safe }}{% if note.content|length > 20 %}...{% endif %}</td>
+                    <td><a href="{{url_for('notebook.view_note', note_id=note.note_id)}}" target="_blank">查看笔记内容</a></td>
+                </tr>
+            {% endfor %}
+            {% endif %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

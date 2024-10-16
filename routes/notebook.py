@@ -40,7 +40,6 @@ def homepage():
 
 @notebook_bp.route("/notebook")
 def notebook():
-    print(g.isLogin)
     if g.isLogin:
         return render_template("notebook.html", user=g.login_user)
     return redirect(url_for('users.login'))
@@ -89,3 +88,20 @@ def view_note(note_id):
             abort(404)
     else:
         abort(403)
+
+# 查看所有笔记
+@notebook_bp.route("/allNotes/<username>")
+def allNotes(username):
+    user2=User.query.filter_by(username=username).first()
+    if user2:
+        if g.isLogin:
+            user1=User.query.filter_by(username=g.login_user).first()
+            if username==g.login_user or user1.administrator:
+                user1 = User.query.filter_by(username=username).first()
+                if user1:
+                    user1_id = user1.id
+                    notes1 = Notes.query.filter_by(author_id=user1_id).all()
+                    notes_info = [note.to_dict() for note in notes1]
+                    return render_template("allNotes.html", notes=notes_info,username=username)
+        return "<script>alert('您没有权限访问该用户的所有笔记！')</script>"
+    return "<script>alert('未找到该用户！')</script>"
