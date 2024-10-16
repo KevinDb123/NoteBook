@@ -17,10 +17,7 @@ def highlight_code_block(code, language):
     return highlight(code, lexer, formatter)
 
 def render_markdown(content):
-    # 通过 markdown2 渲染 markdown 文本并启用 fenced-code-blocks
     html_content = markdown2.markdown(content, extras=["fenced-code-blocks", "code-friendly"])
-
-    # 查找代码块并高亮
     def replace_code_blocks(match):
         code_block = match.group(1)
         code_lines = code_block.split('\n', 1)
@@ -29,8 +26,6 @@ def render_markdown(content):
         else:
             language, code = "", code_lines[0]
         return highlight_code_block(code, language)
-
-    # 正则匹配 fenced-code-blocks 中的代码块
     import re
     pattern = r'<pre><code class="language-(\w+)">(.*?)</code></pre>'
     highlighted_content = re.sub(pattern, lambda match: replace_code_blocks(match), html_content, flags=re.DOTALL)
@@ -69,7 +64,7 @@ def upload_note_post():
         new_note = Notes(
             author_id=author_id,
             title=title,
-            content=content_html,
+            content=content,
             update_time=update_time
         )
         db.session.add(new_note)
@@ -87,6 +82,7 @@ def view_note(note_id):
             note_dict = note1.to_dict()
             user1=User.query.filter_by(id=note1.author_id).first()
             # note_dict['content']=highlight_code_block(note_dict['content'], "python")
+            note_dict['content']=render_markdown(note_dict['content'])
             note_dict['username']=user1.username
             return render_template("viewnote.html", note=note_dict)
         else:

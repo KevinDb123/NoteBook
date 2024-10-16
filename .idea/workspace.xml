@@ -4,17 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5a7c0935-9925-42f2-80b8-40a50a69ce3f" name="更改" comment="修改">
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/css/upload.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/upload_note.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/viewnote.html" afterDir="false" />
+    <list default="true" id="5a7c0935-9925-42f2-80b8-40a50a69ce3f" name="更改" comment="添加了上传笔记和阅览笔记的功能（markdown）">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/administrator.py" beforeDir="false" afterPath="$PROJECT_DIR$/routes/administrator.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/notebook.py" beforeDir="false" afterPath="$PROJECT_DIR$/routes/notebook.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/users.py" beforeDir="false" afterPath="$PROJECT_DIR$/routes/users.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/UserLists.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/UserLists.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -168,7 +160,8 @@
       <workItem from="1728964836788" duration="2523000" />
       <workItem from="1728991798010" duration="8534000" />
       <workItem from="1729041652384" duration="2307000" />
-      <workItem from="1729044576377" duration="4082000" />
+      <workItem from="1729044576377" duration="4260000" />
+      <workItem from="1729050370981" duration="661000" />
     </task>
     <task id="LOCAL-00001" summary="Add basic things">
       <option name="closed" value="true" />
@@ -338,7 +331,15 @@
       <option name="project" value="LOCAL" />
       <updated>1729004927117</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="添加了上传笔记和阅览笔记的功能（markdown）">
+      <option name="closed" value="true" />
+      <created>1729048731067</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1729048731067</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -371,10 +372,11 @@
     <MESSAGE value="搞定了global变量问题" />
     <MESSAGE value="1" />
     <MESSAGE value="修改" />
-    <option name="LAST_COMMIT_MESSAGE" value="修改" />
+    <MESSAGE value="添加了上传笔记和阅览笔记的功能（markdown）" />
+    <option name="LAST_COMMIT_MESSAGE" value="添加了上传笔记和阅览笔记的功能（markdown）" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/NoteBook$main.coverage" NAME="app 覆盖结果" MODIFIED="1728797444195" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/NoteBook$app.coverage" NAME="app 覆盖结果" MODIFIED="1729047621370" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/NoteBook$app.coverage" NAME="app 覆盖结果" MODIFIED="1729050766834" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>
