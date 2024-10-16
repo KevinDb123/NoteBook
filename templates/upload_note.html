@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>创建笔记</title>
+    <link rel="stylesheet" href="{{url_for('static',filename='css/upload.css')}}">
+</head>
+<body>
+    <div class="note-container">
+        <form action="/Notebook/upload_note" method="POST">
+            <input type="text" id="note-title" value="{{username}}的笔记" name="note_title" />
+            <div class="note-content">
+                <textarea name="note_content" id="note-text" placeholder="在这里输入笔记内容..."></textarea>
+            </div>
+            <button type="submit">点击提交</button>
+        </form>
+    </div>
+</body>
+</html>

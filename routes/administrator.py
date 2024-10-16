@@ -26,10 +26,10 @@ def Admin_rep(username):
 @admin_bp.route("/Admin_deleteUser/<username>")
 def Admin_deleteUser(username):
     user1=User.query.filter_by(username=username).first()
-    if user1 and username!="KevinDb123":
+    if user1 and user1.administrator==False:
         db.session.delete(user1)
         db.session.commit()
-    elif user1.username=="KevinDb123":
+    elif user1.administrator==True:
         return render_template_string('''
                 <script>
                     alert('管理员账号不得注销');

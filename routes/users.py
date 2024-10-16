@@ -14,7 +14,7 @@ def login_check():
     for user in users:
         if user.username == request.form['username']:
             if user.password == request.form['password']:
-                if user.username == 'KevinDb123':
+                if user.administrator==True:
                     session['isAdministrator'] = True
                 session['isLogin'] = True
                 session['login_user'] = user.username
@@ -37,7 +37,7 @@ def register_check():
     if existing_user:
         return redirect(url_for('users.register', message="该用户名已被注册!"))
 
-    new_user = User(username=username, password=password)
+    new_user = User(username=username, password=password,administrator=False,note_numbers=0)
     db.session.add(new_user)
     db.session.commit()
 
