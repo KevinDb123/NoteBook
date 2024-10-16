@@ -1,46 +1,89 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>用户信息展示</title>
-    <link rel="stylesheet" href="../static/css/userLists.css">
+    <title>{{g.login_user}}的在线笔记</title>
+    <link rel="stylesheet" href="{{url_for('static',filename='css/index.css')}}">
 </head>
 <body>
+    <nav class="navbar">
+        <h1>{{g.login_user}}的在线笔记</h1>
+        <ul>
+            <li><a href="{{url_for('users.repwd')}}" target="_blank">修改密码</a></li>
+            <li><a href="{{url_for('users.deleteUser')}}">注销账户</a></li>
+            <li><a href="{{url_for('users.register')}}" target="_blank">注册用户</a></li>
+            <li><a href="{{url_for('notebook.homepage')}}">回到首页</a></li>
+            <li><a href="{{url_for('users.logout')}}">登出</a></li>
+        </ul>
+    </nav>
+
     <div class="container">
-        <h1>所有用户信息</h1>
-        <table>
-            <thead>
-                <tr>
-                    <th>用户id</th>
-                    <th>用户名</th>
-                    <th>密码</th>
-                    <th>笔记个数</th>
-                    <th>所有笔记</th>
-                    <th>修改密码</th>
-                    <th>删除该用户</th>
-                </tr>
-            </thead>
-            <tbody>
-            {%for user in users%}
-                <tr>
-                    <td>{{ "%04d"|format(user.id) }}</td>
-                    <td>{{user.username}}</td>
-                    <td>{{user.password}}</td>
-                    <td>{{user.note_numbers}}</td>
-                    <td>
-                        <a href="{{url_for('notebook.allNotes',username=user.username)}}" target="_blank">查看所有笔记</a>
-                    </td>
-                    <td>
-                        <a href="{{ url_for('admin.Admin_repwd', username=user.username) }}" target="_blank">修改密码</a>
-                    </td>
-                    <td>
-                        <a href="{{ url_for('admin.Admin_deleteUser', username=user.username) }}" target="_blank">删除该用户</a>
-                    </td>
-                </tr>
-            {%endfor%}
-            </tbody>
-        </table>
+        <!-- 侧边栏 -->
+        <aside class="sidebar">
+            <button class="create-btn" onclick="location.href='{{ url_for("notebook.upload_note") }}'">新建笔记</button>
+            <ul>
+                <li><a href="{{url_for('notebook.allNotes',username=g.login_user)}}">所有笔记</a></li>
+                <li><a href="#">上传笔记</a></li>
+                <li><a href="{{url_for('admin.UserLists')}}">管理员：查看用户信息</a></li>
+            </ul>
+        </aside>
+        <main class="content">
+            <h1>所有用户信息</h1>
+            <table>
+                <thead>
+                    <tr>
+                        <th>用户id</th>
+                        <th>用户名</th>
+                        <th>密码</th>
+                        <th>笔记个数</th>
+                        <th>所有笔记</th>
+                        <th>修改密码</th>
+                        <th>删除该用户</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {%for user in users%}
+                    <tr>
+                        <td>{{ "%04d"|format(user.id) }}</td>
+                        <td>{{user.username}}</td>
+                        <td>{{user.password}}</td>
+                        <td>{{user.note_numbers}}</td>
+                        <td>
+                            <a href="{{url_for('notebook.allNotes',username=user.username)}}">查看所有笔记</a>
+                        </td>
+                        <td>
+                            <a href="{{ url_for('admin.Admin_repwd', username=user.username) }}">修改密码</a>
+                        </td>
+                        <td>
+                             <a class="admin_deleteUser" href="{{ url_for('admin.Admin_deleteUser', username=user.username) }}">删除该用户</a>
+                        </td>
+                    </tr>
+                {%endfor%}
+                </tbody>
+            </table>
+        </main>
     </div>
 </body>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+   $(document).ready(function() {
+    $('.admin_deleteUser').on('click', function(event) {
+        event.preventDefault();
+        var deleteUrl = $(this).attr('href');
+        $.ajax({
+            url: deleteUrl,
+            method: 'POST',
+            success: function(response) {
+                alert(response.message);
+                location.reload();
+            },
+            error: function(xhr) {
+                alert(xhr.responseJSON.message);
+            }
+        });
+    });
+});
+
+</script>
 </html>

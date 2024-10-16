@@ -1,5 +1,5 @@
-from flask import Blueprint, render_template, request, redirect, url_for,g,render_template_string
-from models import User
+from flask import Blueprint, render_template, request, redirect, url_for,g,render_template_string,jsonify
+from models import User,Notes
 from exts import db
 
 admin_bp = Blueprint('admin', __name__,template_folder='../templates')
@@ -23,17 +23,16 @@ def Admin_rep(username):
         db.session.commit()
     return redirect(url_for('admin.UserLists'))
 # 删除用户
-@admin_bp.route("/Admin_deleteUser/<username>")
+@admin_bp.route("/Admin_deleteUser/<username>", methods=['POST'])
 def Admin_deleteUser(username):
-    user1=User.query.filter_by(username=username).first()
-    if user1 and user1.administrator==False:
-        db.session.delete(user1)
-        db.session.commit()
-    elif user1.administrator==True:
-        return render_template_string('''
-                <script>
-                    alert('管理员账号不得注销');
-                    window.location.href = "{{ url_for('admin.UserLists') }}";
-                </script>
-            ''')
-    return redirect(url_for('admin.UserLists'))
+    user1 = User.query.filter_by(username=username).first()
+    if user1:
+        if user1.administrator:
+            return jsonify({"message": "管理员的账号不可被注销！"}), 405
+        else:
+            Notes.query.filter_by(author_id=user1.id).delete()
+            db.session.delete(user1)
+            db.session.commit()
+            return jsonify({"message": "用户已成功注销！"}), 200
+    else:
+        return jsonify({"message": "用户不存在！"}), 404

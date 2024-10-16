@@ -10,7 +10,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    background: linear-gradient(to right, #3498db, #e74c3c);
+    background-image: url('../images/background-image.jpg');
 }
 
 .container {

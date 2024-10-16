@@ -12,10 +12,10 @@
         <div class="sidebar" id="sidebar">
             <button class="shrink-btn" onclick="toggleSidebar()"><i class="fas fa-bars"></i></button>
             <a href="{{url_for('notebook.upload_note')}}"><i class="fas fa-home"></i>前往主页</a>
-            <a href="/Notebook/deleteUser"><i class="fas fa-sign-in-alt"></i>注销账号</a>
-            <a href="/Notebook/repwd"><i class="fas fa-user-plus"></i>修改用户密码</a>
-            <a href="/Notebook/register"><i class="fas fa-user-plus"></i>注册</a>
-            <a href="/Notebook/logout"><i class="fas fa-user-plus"></i>退出登录</a>
+            <a href="{{url_for('users.deleteUser')}}"><i class="fas fa-sign-in-alt"></i>注销账号</a>
+            <a href="{{url_for('users.repwd')}}"><i class="fas fa-user-plus"></i>修改用户密码</a>
+            <a href="{{url_for('users.register')}}"><i class="fas fa-user-plus"></i>注册</a>
+            <a href="{{url_for('users.logout')}}"><i class="fas fa-user-plus"></i>退出登录</a>
             <a href="{{url_for('admin.UserLists')}}" target="_blank"><i class="fas fa-user-plus"></i>查看所有用户信息</a>
             <a href="#"><i class="fas fa-info-circle"></i>说明</a>
         </div>

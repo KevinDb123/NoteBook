@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, request, redirect, url_for,g,abort
+from flask import Blueprint, render_template, request, redirect, url_for,g,abort,jsonify
 from models import User,Notes
 import markdown2
 from datetime import datetime
@@ -77,7 +77,6 @@ def view_note(note_id):
         if note1:
             note_dict = note1.to_dict()
             user1=User.query.filter_by(id=note1.author_id).first()
-            # note_dict['content']=highlight_code_block(note_dict['content'], "python")
             note_dict['content']=render_markdown(note_dict['content'])
             note_dict['username']=user1.username
             return render_template("viewnote.html", note=note_dict)
@@ -102,3 +101,14 @@ def allNotes(username):
                     return render_template("allNotes.html", notes=notes_info,username=username)
         return "<script>alert('您没有权限访问该用户的所有笔记！')</script>"
     return "<script>alert('未找到该用户！')</script>"
+
+@notebook_bp.route("/deleteNote/<int:note_id>",methods=['POST'])
+def deleteNote(note_id):
+    note1=Notes.query.filter_by(note_id=note_id).first()
+    if note1:
+        user1=User.query.filter_by(id=note1.author_id).first()
+        if user1:
+            user1.note_numbers=user1.note_numbers-1
+        db.session.delete(note1)
+        db.session.commit()
+        return jsonify({"message":"删除成功！"}),200

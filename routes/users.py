@@ -1,6 +1,6 @@
 from exts import db
-from models import User
-from flask import Blueprint,Flask, render_template, request, redirect, url_for,g,session
+from models import User,Notes
+from flask import Blueprint, Flask, render_template, request, redirect, url_for, g, session, jsonify
 
 users_bp=Blueprint('users',__name__,template_folder='../templates')
 @users_bp.route("/login", methods=['GET'])
@@ -20,10 +20,10 @@ def login_check():
                     session['isAdministrator'] = True
                 session['isLogin'] = True
                 session['login_user'] = user.username
-                return redirect(url_for('notebook.upload_note'))
+                return jsonify({"message":"登录成功！", "redirect_url": url_for('notebook.upload_note')}), 200
             else:
-                return redirect(url_for('users.login', message="密码错误!"))
-    return redirect(url_for('users.login', message="该用户未注册!"))
+                return jsonify({"message":"密码错误！"}),401
+    return jsonify({"message":"未查询到该用户！"}),404
 
 
 @users_bp.route("/register", methods=['GET'])
@@ -37,13 +37,12 @@ def register_check():
     password = request.form.get('password')
     existing_user = User.query.filter_by(username=username).first()
     if existing_user:
-        return redirect(url_for('users.register', message="该用户名已被注册!"))
+        return jsonify({"message":"该用户已被注册！"}),409
 
     new_user = User(username=username, password=password,administrator=False,note_numbers=0)
     db.session.add(new_user)
     db.session.commit()
-
-    return redirect(url_for('users.register', message="注册成功！"))
+    return jsonify({"message":"注册成功！"}),200
 
 
 @users_bp.route("/logout", methods=['GET'])
@@ -67,12 +66,12 @@ def reset_password():
             if new_password !=password:
                 user1.password = new_password
                 db.session.commit()
-                return redirect(url_for('users.repwd',message="修改密码成功！"))
+                return jsonify({"message":"修改密码成功！"}),200
             else:
-                return redirect(url_for("users.repwd",message="新密码不能与原密码相同"))
+                return jsonify({"message":"新密码不能与原密码相同"}),400
         else:
-            return redirect(url_for("users.repwd",message="密码错误！"))
-    return redirect(url_for("users.repwd",message="该用户并未注册"))
+            return jsonify({"message":"密码错误！"}),401
+    return jsonify({"message":"未查询到该用户"}),404
 
 #deleteUser.html 注销用户
 @users_bp.route("/deleteUser",methods=['GET'])
@@ -87,15 +86,18 @@ def delete_user():
     if user1:
         if user1.password == password:
             if user1.password == repassword:
+                notes=Notes.query.filter_by(author_id=user1.id).all()
+                for note in notes:
+                    db.session.delete(note)
                 db.session.delete(user1)
                 db.session.commit()
                 session['isLogin'] = False
                 session['isAdministrator'] = False
                 session['login_user'] = None
-                return redirect(url_for("users.deleteUser",message="已成功注销！"))
+                return jsonify({"message":"已成功注销！"}),200
             else:
-                return redirect(url_for("users.deleteUser",message="密码错误（密码或确认密码）！"))
+                return jsonify({"message":"密码错误！"}),401
         else:
-            return redirect(url_for("users.deleteUser",message="密码错误（密码或确认密码）！"))
+            return jsonify({"message":"密码错误！"}),401
     else:
-        return redirect(url_for("users.deleteUser",message="未查询到该用户"))
+        return jsonify({"message":"未查询到该用户！"}),404

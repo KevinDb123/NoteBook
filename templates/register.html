@@ -4,29 +4,50 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>在线学习笔记 - 注册</title>
-    <link rel="stylesheet" href="../static/css/prior.css">
+    <link rel="stylesheet" href="{{url_for('static',filename='css/prior.css')}}">
 </head>
 <body>
     <div class="container">
         <h1>在线学习笔记</h1>
         <div class="form-box">
             <h2>注册</h2>
-            <form action="/Notebook/register" method="post">
+            <form id="registerForm" action="/Notebook/register" method="post">
                 <input type="text" id="username" name="username" placeholder="用户名" required>
                 <input type="password" id="password" name="password" placeholder="密码" required>
-                <button type="submit">注册</button>
-                <p>已有账户？ <a href="/Notebook/login">立即登录</a></p>
-                <p>想要修改密码？ <a href="/Notebook/repwd">前往修改密码</a></p>
-                <p><a href="{{url_for('notebook.homepage')}}">回到首页</a></p>
+                <button type="submit" class="register_a">注册</button>
+                <p>已有账户？ <a href="{{url_for('users.login')}}">立即登录</a></p>
+                <p>想要修改密码？ <a href="{{url_for('users.repwd')}}">前往修改密码</a></p>
+                <p><a href="{{ url_for('notebook.homepage') }}">回到首页</a></p>
             </form>
         </div>
     </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#registerForm').on('submit', function(event) {
+                event.preventDefault();  // 阻止表单的默认提交行为
+
+                var formData = $(this).serialize();  // 序列化表单数据
+
+                $.ajax({
+                    url: '/Notebook/register',
+                    method: 'POST',
+                    data: formData,
+                    success: function(response) {
+                        alert(response.message);
+                        location.reload();
+                    },
+                    error: function(xhr) {
+                        if (xhr.responseJSON && xhr.responseJSON.message) {
+                            alert(xhr.responseJSON.message);
+                        } else {
+                            alert('请求失败: 未知错误');
+                        }
+                    }
+                });
+            });
+        });
+    </script>
 </body>
-<script>
-        const urlParams = new URLSearchParams(window.location.search);
-        const message = urlParams.get('message');
-        if (message) {
-            alert(message);
-        }
-</script>
 </html>
