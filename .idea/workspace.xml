@@ -4,29 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5a7c0935-9925-42f2-80b8-40a50a69ce3f" name="更改" comment="修改">
-      <change afterPath="$PROJECT_DIR$/static/css/index.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/css/view-note.css" afterDir="false" />
+    <list default="true" id="5a7c0935-9925-42f2-80b8-40a50a69ce3f" name="更改" comment="修改了很多东西">
+      <change afterPath="$PROJECT_DIR$/templates/update_note.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/administrator.py" beforeDir="false" afterPath="$PROJECT_DIR$/routes/administrator.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/notebook.py" beforeDir="false" afterPath="$PROJECT_DIR$/routes/notebook.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/users.py" beforeDir="false" afterPath="$PROJECT_DIR$/routes/users.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/css/notebook.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/css/prior.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/css/prior.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/css/upload.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/css/userLists.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/UserLists.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/UserLists.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/allNotes.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/allNotes.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/deleteUser.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/deleteUser.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/homepage-admin.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/homepage-admin.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/homepage-login.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/homepage-login.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/homepage.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/homepage.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/login.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/notebook.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/register.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/register.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/reset_password.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/reset_password.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/upload_note.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/upload_note.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/viewnote.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/viewnote.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -194,7 +176,7 @@
       <workItem from="1729041652384" duration="2307000" />
       <workItem from="1729044576377" duration="4260000" />
       <workItem from="1729050370981" duration="7442000" />
-      <workItem from="1729067748737" duration="13134000" />
+      <workItem from="1729067748737" duration="18241000" />
     </task>
     <task id="LOCAL-00001" summary="Add basic things">
       <option name="closed" value="true" />
@@ -396,7 +378,23 @@
       <option name="project" value="LOCAL" />
       <updated>1729057835302</updated>
     </task>
-    <option name="localTasksCounter" value="26" />
+    <task id="LOCAL-00026" summary="修改了很多东西">
+      <option name="closed" value="true" />
+      <created>1729082458475</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1729082458475</updated>
+    </task>
+    <task id="LOCAL-00027" summary="修改了很多东西">
+      <option name="closed" value="true" />
+      <created>1729082492693</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1729082492693</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -431,10 +429,11 @@
     <MESSAGE value="添加了上传笔记和阅览笔记的功能（markdown）" />
     <MESSAGE value="添加了查看用户所有笔记的功能" />
     <MESSAGE value="修改" />
-    <option name="LAST_COMMIT_MESSAGE" value="修改" />
+    <MESSAGE value="修改了很多东西" />
+    <option name="LAST_COMMIT_MESSAGE" value="修改了很多东西" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/NoteBook$main.coverage" NAME="app 覆盖结果" MODIFIED="1728797444195" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/NoteBook$app.coverage" NAME="app 覆盖结果" MODIFIED="1729080935404" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/NoteBook$app.coverage" NAME="app 覆盖结果" MODIFIED="1729086980442" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>

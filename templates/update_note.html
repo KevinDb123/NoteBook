@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{note.username}}的在线笔记</title>
+    <link rel="stylesheet" href="{{url_for('static',filename='css/index.css')}}">
+</head>
+<body>
+    <nav class="navbar">
+        <h1>{{note.username}}的在线笔记</h1>
+        <ul>
+            <li><a href="{{url_for('users.repwd')}}" target="_blank">修改密码</a></li>
+            <li><a href="{{url_for('users.deleteUser')}}">注销账户</a></li>
+            <li><a href="{{url_for('users.register')}}" target="_blank">注册用户</a></li>
+            <li><a href="{{url_for('notebook.homepage')}}">回到首页</a></li>
+            <li><a href="{{url_for('users.logout')}}">登出</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <!-- 侧边栏 -->
+        <aside class="sidebar">
+            <button class="create-btn" onclick="location.href='{{ url_for("notebook.upload_note") }}'">新建笔记</button>
+            <ul>
+                <li><a href="{{url_for('notebook.allNotes',username=note.username)}}">所有笔记</a></li>
+                <li><a href="#">上传笔记</a></li>
+                <li><a href="{{url_for('admin.UserLists')}}">管理员：查看用户信息</a></li>
+            </ul>
+        </aside>
+
+        <!-- 主内容区域 -->
+        <main class="content">
+            <div class="note-editor">
+                <form action="/Notebook/update_note/{{note.note_id}}" method="POST" id="updateNoteForm">
+                   <h2>标题：</h2> <input type="text" id="note-title" value="{{note.title}}" name="note_title" />
+                    <div class="note-content">
+                        <textarea name="note_content" id="note-text">{{note.content}}</textarea>
+                    </div>
+                    <button class="create-btn" type="submit">点击提交</button>
+                </form>
+            </div>
+        </main>
+    </div>
+</body>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+ $(document).ready(function() {
+            $('#updateNoteForm').on('submit', function(event) {
+                event.preventDefault();
+                var note1 = JSON.parse('{{ note | tojson | safe }}');
+                var formData = $(this).serialize();  // 序列化表单数据
+
+                $.ajax({
+                    url: '/Notebook/update_note/'+note1.note_id,
+                    method: 'POST',
+                    data: formData,
+                    success: function(response) {
+                        alert(response.message);
+                        window.location.href="{{url_for('notebook.upload_note')}}"
+                    },
+                    error: function(xhr) {
+                        if (xhr.responseJSON && xhr.responseJSON.message) {
+                            alert(xhr.responseJSON.message);
+                        } else {
+                            alert('请求失败: 未知错误');
+                        }
+                    }
+                });
+            });
+        });
+</script>
+</html>

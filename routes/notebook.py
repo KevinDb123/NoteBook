@@ -54,7 +54,6 @@ def upload_note_post():
         title = request.form.get("note_title")
         content = request.form.get("note_content")
         update_time = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-        content_html = render_markdown(content)
         user1=User.query.filter_by(username=g.login_user).first()
         author_id=user1.id
         new_note = Notes(
@@ -112,3 +111,32 @@ def deleteNote(note_id):
         db.session.delete(note1)
         db.session.commit()
         return jsonify({"message":"删除成功！"}),200
+@notebook_bp.route("/update_note/<int:note_id>",methods=['GET'])
+def update_note(note_id):
+    note1 = Notes.query.filter_by(note_id=note_id).first()
+    user1 = User.query.filter_by(id=note1.author_id).first()
+    if g.isLogin:
+        if g.login_user==user1.username:
+            note_dict = note1.to_dict()
+            note_dict['username']=user1.username
+            return render_template("update_note.html",note=note_dict)
+    return ("<script>alert('您没有权限修改该笔记！');window.location.href='" + url_for(
+        'notebook.upload_note') + "'</script>")
+
+
+@notebook_bp.route("/update_note/<int:note_id>", methods=['POST'])
+def update_note_post(note_id):
+    note1 = Notes.query.filter_by(note_id=note_id).first()
+
+    if note1:
+        user1 = User.query.filter_by(id=note1.author_id).first()
+        if g.login_user == user1.username:
+            note1.title = request.form.get("note_title")
+            note1.content = request.form.get("note_content")
+            note1.update_time = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+            db.session.commit()
+            return jsonify({"message": "笔记更新成功！"}), 200
+        else:
+            return jsonify({"message": "您没有权限修改该笔记"}), 403
+    else:
+        return jsonify({"message": "未找到该笔记"}), 404
